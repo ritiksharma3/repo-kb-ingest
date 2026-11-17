@@ -1,0 +1,294 @@
+{
+ "convention_stats": [
+  {
+   "counts": {
+    "logger": 2
+   },
+   "extractor": "conventions",
+   "majority": "logger",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "logger",
+   "representative_file": "src/app.js",
+   "representative_line": 9
+  },
+  {
+   "counts": {
+    "lowercase": 3
+   },
+   "extractor": "conventions",
+   "majority": "lowercase",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "file_naming",
+   "representative_file": "src/app.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "none": 1
+   },
+   "extractor": "conventions",
+   "majority": "none",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "error_handling",
+   "representative_file": "src/jobs/gateway.js",
+   "representative_line": 7
+  },
+  {
+   "counts": {
+    "res.json": 1
+   },
+   "extractor": "conventions",
+   "majority": "res.json",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "response_shape",
+   "representative_file": "src/jobs/gateway.js",
+   "representative_line": 11
+  },
+  {
+   "counts": {
+    "utils": 1
+   },
+   "extractor": "conventions",
+   "majority": "layered: utils",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "folder_layout",
+   "representative_file": "src/utils/logger.js",
+   "representative_line": 1
+  }
+ ],
+ "db_access": [],
+ "extraction_reports": [],
+ "file_states": {
+  "Jenkinsfile": [
+   "config",
+   "summarized",
+   null
+  ],
+  "README.md": [
+   "docs",
+   "summarized",
+   null
+  ],
+  "ecosystem.config.js": [
+   "config",
+   "summarized",
+   null
+  ],
+  "package.json": [
+   "config",
+   "summarized",
+   null
+  ],
+  "src/app.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/jobs/gateway.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/utils/logger.js": [
+   "source",
+   "summarized",
+   null
+  ]
+ },
+ "findings": [],
+ "frameworks": {
+  "aws-sqs": [
+   "package.json:1 dependency aws-sdk",
+   "src/jobs/gateway.js:2 imports aws-sdk"
+  ],
+  "axios": [
+   "package.json:1 dependency axios",
+   "src/jobs/gateway.js:1 imports axios"
+  ],
+  "express": [
+   "package.json:1 dependency express",
+   "src/app.js:1 imports express"
+  ]
+ },
+ "log_sites": [
+  {
+   "enclosing_symbol": "listOrders",
+   "extractor": "logs",
+   "file_path": "src/jobs/gateway.js",
+   "kind": "log",
+   "level": "info",
+   "line": 10,
+   "line_hash": "421e396bec47c01e",
+   "origin": "source",
+   "template": "Relayed order {}"
+  },
+  {
+   "enclosing_symbol": null,
+   "extractor": "logs",
+   "file_path": "src/app.js",
+   "kind": "log",
+   "level": "info",
+   "line": 9,
+   "line_hash": "ddf6ae55a3536614",
+   "origin": "source",
+   "template": "mock-api listening on port 5000"
+  }
+ ],
+ "outbound_calls": [
+  {
+   "client": "axios",
+   "enclosing_symbol": "listOrders",
+   "expression": "'https://login.internal/auth/verify'",
+   "extractor": "axios_calls",
+   "file_path": "src/jobs/gateway.js",
+   "has_timeout": true,
+   "line": 8,
+   "line_hash": "11cc3b6b15d9330d",
+   "method": "GET",
+   "origin": "source",
+   "status": "verified",
+   "url": "https://login.internal/auth/verify"
+  },
+  {
+   "client": "axios",
+   "enclosing_symbol": "listOrders",
+   "expression": "'https://orders.internal/api/orders/42'",
+   "extractor": "axios_calls",
+   "file_path": "src/jobs/gateway.js",
+   "has_timeout": true,
+   "line": 9,
+   "line_hash": "53c74db31efa3518",
+   "method": "GET",
+   "origin": "source",
+   "status": "verified",
+   "url": "https://orders.internal/api/orders/42"
+  }
+ ],
+ "queues": [
+  {
+   "direction": "send",
+   "enclosing_symbol": "publishUpdate",
+   "expression": "'https://sqs.eu-west-1.amazonaws.com/123456789012/order-updates'",
+   "extractor": "sqs",
+   "file_path": "src/jobs/gateway.js",
+   "library": "aws-sdk",
+   "line": 15,
+   "line_hash": "4e81651f24bebba7",
+   "origin": "source",
+   "queue_name": "order-updates",
+   "status": "verified"
+  }
+ ],
+ "routes": [
+  {
+   "expression": "'/gateway/orders'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/jobs/gateway.js",
+   "handler_line": 7,
+   "handler_symbol": "listOrders",
+   "line_hash": "772c80d88b596bdf",
+   "method": "GET",
+   "middleware": [],
+   "origin": "source",
+   "path": "/gateway/orders",
+   "route_file": "src/app.js",
+   "route_line": 6,
+   "status": "verified"
+  }
+ ],
+ "symbol_refs": [
+  {
+   "dst_file": "src/jobs/gateway.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "0c863905195bf3e9",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 3,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "18631980fc37f28b",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 2,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "55a215e01dff1aa0",
+   "origin": "source",
+   "src_file": "src/jobs/gateway.js",
+   "src_line": 3,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "info",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "421e396bec47c01e",
+   "origin": "source",
+   "src_file": "src/jobs/gateway.js",
+   "src_line": 10,
+   "src_symbol": "listOrders",
+   "status": "unverified"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "info",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "ddf6ae55a3536614",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 9,
+   "src_symbol": "<module>",
+   "status": "unverified"
+  }
+ ],
+ "symbols": [
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/jobs/gateway.js",
+   "kind": "function",
+   "line_end": 12,
+   "line_hash": "fb2115e33f945cae",
+   "line_start": 7,
+   "name": "listOrders",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/jobs/gateway.js",
+   "kind": "function",
+   "line_end": 16,
+   "line_hash": "2f88d3ddb7b21007",
+   "line_start": 14,
+   "name": "publishUpdate",
+   "origin": "source",
+   "parent": null
+  }
+ ],
+ "test_map": []
+}

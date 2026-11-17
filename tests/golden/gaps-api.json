@@ -1,0 +1,207 @@
+{
+ "convention_stats": [
+  {
+   "counts": {
+    "lowercase": 1
+   },
+   "extractor": "conventions",
+   "majority": "lowercase",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "file_naming",
+   "representative_file": "src/server.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "raw-sql(mssql)": 1
+   },
+   "extractor": "conventions",
+   "majority": "raw-sql(mssql)",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "data_access",
+   "representative_file": "src/server.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "try/catch": 1
+   },
+   "extractor": "conventions",
+   "majority": "try/catch",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "error_handling",
+   "representative_file": "src/server.js",
+   "representative_line": 7
+  }
+ ],
+ "db_access": [
+  {
+   "enclosing_symbol": "load",
+   "expression": "'SELECT * FROM ' + table",
+   "extractor": "mssql_db",
+   "file_path": "src/server.js",
+   "library": "mssql",
+   "line": 10,
+   "line_hash": "06f5b409cc1605d0",
+   "operation": "unknown",
+   "origin": "source",
+   "procedure": "",
+   "schema_name": "",
+   "status": "unverified",
+   "table_name": ""
+  }
+ ],
+ "extraction_reports": [
+  {
+   "detail": "'SELECT * FROM ' + table",
+   "file_path": "src/server.js",
+   "kind": "unresolved_sql",
+   "line": 10,
+   "subject": "mssql"
+  },
+  {
+   "detail": "`https://${host}/data`",
+   "file_path": "src/server.js",
+   "kind": "unresolved_url",
+   "line": 8,
+   "subject": "axios"
+  },
+  {
+   "detail": "detected (package.json:1 dependency fastify) but no extractor exists",
+   "file_path": "",
+   "kind": "framework_no_extractor",
+   "line": 0,
+   "subject": "fastify"
+  },
+  {
+   "detail": "extractor express_routes returned no rows in routes though express is used (package.json:1 dependency express; src/server.js:1 imports express)",
+   "file_path": "",
+   "kind": "extractor_zero_results",
+   "line": 0,
+   "subject": "express"
+  },
+  {
+   "detail": "no parser grammar for typescript",
+   "file_path": "src/typed.ts",
+   "kind": "no_grammar",
+   "line": 0,
+   "subject": "typescript"
+  },
+  {
+   "detail": "tree-sitter reported a syntax error",
+   "file_path": "src/broken.js",
+   "kind": "parse_failure",
+   "line": 0,
+   "subject": "src/broken.js"
+  }
+ ],
+ "file_states": {
+  "package.json": [
+   "config",
+   "summarized",
+   null
+  ],
+  "src/broken.js": [
+   "source",
+   "failed",
+   "tree-sitter reported a syntax error"
+  ],
+  "src/server.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/typed.ts": [
+   "source",
+   "failed",
+   "no parser grammar for typescript"
+  ]
+ },
+ "findings": [
+  {
+   "detail": "SQL is string-built or unparseable; unresolved",
+   "enclosing_symbol": "load",
+   "extractor": "findings",
+   "file_path": "src/server.js",
+   "line": 10,
+   "line_hash": "06f5b409cc1605d0",
+   "origin": "derived",
+   "rule_id": "dynamic-sql"
+  },
+  {
+   "detail": "axios GET without timeout",
+   "enclosing_symbol": "load",
+   "extractor": "findings",
+   "file_path": "src/server.js",
+   "line": 8,
+   "line_hash": "054c5991f998700c",
+   "origin": "derived",
+   "rule_id": "http-call-no-timeout"
+  },
+  {
+   "detail": "catch block has no statements",
+   "enclosing_symbol": "load",
+   "extractor": "findings",
+   "file_path": "src/server.js",
+   "line": 9,
+   "line_hash": "e5f3427c21f620cf",
+   "origin": "derived",
+   "rule_id": "empty-catch"
+  }
+ ],
+ "frameworks": {
+  "axios": [
+   "package.json:1 dependency axios",
+   "src/server.js:2 imports axios"
+  ],
+  "express": [
+   "package.json:1 dependency express",
+   "src/server.js:1 imports express"
+  ],
+  "fastify": [
+   "package.json:1 dependency fastify"
+  ],
+  "mssql": [
+   "package.json:1 dependency mssql",
+   "src/server.js:3 imports mssql"
+  ]
+ },
+ "log_sites": [],
+ "outbound_calls": [
+  {
+   "client": "axios",
+   "enclosing_symbol": "load",
+   "expression": "`https://${host}/data`",
+   "extractor": "axios_calls",
+   "file_path": "src/server.js",
+   "has_timeout": false,
+   "line": 8,
+   "line_hash": "054c5991f998700c",
+   "method": "GET",
+   "origin": "source",
+   "status": "unverified",
+   "url": null
+  }
+ ],
+ "queues": [],
+ "routes": [],
+ "symbol_refs": [],
+ "symbols": [
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/server.js",
+   "kind": "function",
+   "line_end": 11,
+   "line_hash": "7d7b8c0ad226e051",
+   "line_start": 6,
+   "name": "load",
+   "origin": "source",
+   "parent": null
+  }
+ ],
+ "test_map": []
+}

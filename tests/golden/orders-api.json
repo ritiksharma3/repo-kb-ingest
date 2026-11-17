@@ -1,0 +1,982 @@
+{
+ "convention_stats": [
+  {
+   "counts": {
+    "camelCase": 3,
+    "lowercase": 6
+   },
+   "extractor": "conventions",
+   "majority": "lowercase",
+   "origin": "derived",
+   "outliers": [
+    {
+     "file": "src/controllers/orderController.js",
+     "label": "camelCase",
+     "line": 1
+    },
+    {
+     "file": "src/repositories/orderRepo.js",
+     "label": "camelCase",
+     "line": 1
+    },
+    {
+     "file": "src/services/orderService.js",
+     "label": "camelCase",
+     "line": 1
+    }
+   ],
+   "pattern": "file_naming",
+   "representative_file": "src/app.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "controllers": 1,
+    "repositories": 1,
+    "routes": 2,
+    "services": 1,
+    "utils": 3
+   },
+   "extractor": "conventions",
+   "majority": "layered: controllers, repositories, routes, services, utils",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "folder_layout",
+   "representative_file": "src/controllers/orderController.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "logger": 3
+   },
+   "extractor": "conventions",
+   "majority": "logger",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "logger",
+   "representative_file": "src/app.js",
+   "representative_line": 15
+  },
+  {
+   "counts": {
+    "none": 4,
+    "try/catch": 1
+   },
+   "extractor": "conventions",
+   "majority": "none",
+   "origin": "derived",
+   "outliers": [
+    {
+     "file": "src/controllers/orderController.js",
+     "label": "try/catch",
+     "line": 5
+    }
+   ],
+   "pattern": "error_handling",
+   "representative_file": "src/repositories/orderRepo.js",
+   "representative_line": 3
+  },
+  {
+   "counts": {
+    "raw-sql(mssql)+stored-procedures": 1
+   },
+   "extractor": "conventions",
+   "majority": "raw-sql(mssql)+stored-procedures",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "data_access",
+   "representative_file": "src/repositories/orderRepo.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "res.json": 2,
+    "res.json+res.send": 1
+   },
+   "extractor": "conventions",
+   "majority": "res.json",
+   "origin": "derived",
+   "outliers": [
+    {
+     "file": "src/controllers/orderController.js",
+     "label": "res.json+res.send",
+     "line": 7
+    }
+   ],
+   "pattern": "response_shape",
+   "representative_file": "src/app.js",
+   "representative_line": 10
+  }
+ ],
+ "db_access": [
+  {
+   "enclosing_symbol": "getById",
+   "expression": "'SELECT o.id, o.total FROM dbo.Orders o JOIN dbo.Customers c ON c.id = o.customer_id WHERE o.id = @id'",
+   "extractor": "mssql_db",
+   "file_path": "src/repositories/orderRepo.js",
+   "library": "mssql",
+   "line": 5,
+   "line_hash": "4c7fc8277cbdf12e",
+   "operation": "select",
+   "origin": "source",
+   "procedure": "",
+   "schema_name": "dbo",
+   "status": "verified",
+   "table_name": "Customers"
+  },
+  {
+   "enclosing_symbol": "getById",
+   "expression": "'SELECT o.id, o.total FROM dbo.Orders o JOIN dbo.Customers c ON c.id = o.customer_id WHERE o.id = @id'",
+   "extractor": "mssql_db",
+   "file_path": "src/repositories/orderRepo.js",
+   "library": "mssql",
+   "line": 5,
+   "line_hash": "4c7fc8277cbdf12e",
+   "operation": "select",
+   "origin": "source",
+   "procedure": "",
+   "schema_name": "dbo",
+   "status": "verified",
+   "table_name": "Orders"
+  },
+  {
+   "enclosing_symbol": "insertOrder",
+   "expression": "'INSERT INTO dbo.Orders (customer_id, total) VALUES (1, @p)'",
+   "extractor": "mssql_db",
+   "file_path": "src/repositories/orderRepo.js",
+   "library": "mssql",
+   "line": 11,
+   "line_hash": "863afa40d20b4053",
+   "operation": "insert",
+   "origin": "source",
+   "procedure": "",
+   "schema_name": "dbo",
+   "status": "verified",
+   "table_name": "Orders"
+  },
+  {
+   "enclosing_symbol": "insertOrder",
+   "expression": "'dbo.usp_AuditOrder'",
+   "extractor": "mssql_db",
+   "file_path": "src/repositories/orderRepo.js",
+   "library": "mssql",
+   "line": 12,
+   "line_hash": "ec4baaba700ec4a9",
+   "operation": "exec",
+   "origin": "source",
+   "procedure": "usp_AuditOrder",
+   "schema_name": "dbo",
+   "status": "verified",
+   "table_name": ""
+  },
+  {
+   "enclosing_symbol": "search",
+   "expression": "`SELECT * FROM dbo.Orders WHERE name LIKE '%${term}%'`",
+   "extractor": "mssql_db",
+   "file_path": "src/repositories/orderRepo.js",
+   "library": "mssql",
+   "line": 18,
+   "line_hash": "f8e4dc8206dfed0e",
+   "operation": "unknown",
+   "origin": "source",
+   "procedure": "",
+   "schema_name": "",
+   "status": "unverified",
+   "table_name": ""
+  }
+ ],
+ "extraction_reports": [
+  {
+   "detail": "`SELECT * FROM dbo.Orders WHERE name LIKE '%${term}%'`",
+   "file_path": "src/repositories/orderRepo.js",
+   "kind": "unresolved_sql",
+   "line": 18,
+   "subject": "mssql"
+  }
+ ],
+ "file_states": {
+  ".env.production": [
+   "config",
+   "summarized",
+   null
+  ],
+  ".github/workflows/ci.yml": [
+   "config",
+   "summarized",
+   null
+  ],
+  "CODEOWNERS": [
+   "config",
+   "summarized",
+   null
+  ],
+  "Dockerfile": [
+   "config",
+   "summarized",
+   null
+  ],
+  "Jenkinsfile": [
+   "config",
+   "summarized",
+   null
+  ],
+  "README.md": [
+   "docs",
+   "summarized",
+   null
+  ],
+  "ecosystem.config.js": [
+   "config",
+   "summarized",
+   null
+  ],
+  "package.json": [
+   "config",
+   "summarized",
+   null
+  ],
+  "src/app.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/controllers/orderController.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/repositories/orderRepo.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/routes/health.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/routes/orders.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/services/orderService.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/utils/auth.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/utils/format.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/utils/logger.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "tests/orderService.test.js": [
+   "test",
+   "summarized",
+   null
+  ]
+ },
+ "findings": [
+  {
+   "detail": "SQL is string-built or unparseable; unresolved",
+   "enclosing_symbol": "search",
+   "extractor": "findings",
+   "file_path": "src/repositories/orderRepo.js",
+   "line": 18,
+   "line_hash": "f8e4dc8206dfed0e",
+   "origin": "derived",
+   "rule_id": "dynamic-sql"
+  },
+  {
+   "detail": "axios POST without timeout",
+   "enclosing_symbol": "notifyShipment",
+   "extractor": "findings",
+   "file_path": "src/services/orderService.js",
+   "line": 25,
+   "line_hash": "e58003f96db79f25",
+   "origin": "derived",
+   "rule_id": "http-call-no-timeout"
+  },
+  {
+   "detail": "catch block only logs; does not rethrow or return",
+   "enclosing_symbol": "shipOrder",
+   "extractor": "findings",
+   "file_path": "src/controllers/orderController.js",
+   "line": 23,
+   "line_hash": "56282e4cce6180db",
+   "origin": "derived",
+   "rule_id": "catch-only-logs"
+  },
+  {
+   "detail": "process.on('unhandledRejection') registered",
+   "enclosing_symbol": null,
+   "extractor": "findings",
+   "file_path": "src/app.js",
+   "line": 14,
+   "line_hash": "f0c58355750868f2",
+   "origin": "derived",
+   "rule_id": "unhandled-rejection-handler"
+  }
+ ],
+ "frameworks": {
+  "aws-sqs": [
+   "package.json:1 dependency aws-sdk",
+   "src/services/orderService.js:2 imports aws-sdk"
+  ],
+  "axios": [
+   "package.json:1 dependency axios",
+   "src/services/orderService.js:1 imports axios",
+   "src/utils/auth.js:1 imports axios"
+  ],
+  "express": [
+   "package.json:1 dependency express",
+   "src/app.js:4 imports express",
+   "src/routes/health.js:1 imports express",
+   "src/routes/orders.js:1 imports express"
+  ],
+  "mssql": [
+   "package.json:1 dependency mssql",
+   "src/repositories/orderRepo.js:1 imports mssql"
+  ]
+ },
+ "log_sites": [
+  {
+   "enclosing_symbol": "findOrder",
+   "extractor": "logs",
+   "file_path": "src/services/orderService.js",
+   "kind": "error",
+   "level": null,
+   "line": 12,
+   "line_hash": "194e522443e84ba7",
+   "origin": "source",
+   "template": "Order not found"
+  },
+  {
+   "enclosing_symbol": "getOrder",
+   "extractor": "logs",
+   "file_path": "src/controllers/orderController.js",
+   "kind": "log",
+   "level": "error",
+   "line": 9,
+   "line_hash": "cef87886f3d00509",
+   "origin": "source",
+   "template": "Failed to fetch order"
+  },
+  {
+   "enclosing_symbol": "placeOrder",
+   "extractor": "logs",
+   "file_path": "src/services/orderService.js",
+   "kind": "log",
+   "level": "info",
+   "line": 20,
+   "line_hash": "d4cffe81fe8404b1",
+   "origin": "source",
+   "template": "Order {} placed"
+  },
+  {
+   "enclosing_symbol": "requireAuth",
+   "extractor": "logs",
+   "file_path": "src/utils/auth.js",
+   "kind": "error",
+   "level": null,
+   "line": 5,
+   "line_hash": "e0e6d50e1aebd49b",
+   "origin": "source",
+   "template": "Missing authorization header"
+  },
+  {
+   "enclosing_symbol": "shipOrder",
+   "extractor": "logs",
+   "file_path": "src/controllers/orderController.js",
+   "kind": "log",
+   "level": "warn",
+   "line": 24,
+   "line_hash": "208dd16e22e4e898",
+   "origin": "source",
+   "template": "shipment notification failed, ignoring"
+  },
+  {
+   "enclosing_symbol": null,
+   "extractor": "logs",
+   "file_path": "src/app.js",
+   "kind": "log",
+   "level": "error",
+   "line": 15,
+   "line_hash": "eedb61dcc85de82a",
+   "origin": "source",
+   "template": "Unhandled rejection in orders-api"
+  },
+  {
+   "enclosing_symbol": null,
+   "extractor": "logs",
+   "file_path": "src/app.js",
+   "kind": "log",
+   "level": "info",
+   "line": 19,
+   "line_hash": "1772588ce940e4d2",
+   "origin": "source",
+   "template": "orders-api listening on port 3000"
+  }
+ ],
+ "outbound_calls": [
+  {
+   "client": "axios",
+   "enclosing_symbol": "notifyShipment",
+   "expression": "'https://shipping.internal/api/notify'",
+   "extractor": "axios_calls",
+   "file_path": "src/services/orderService.js",
+   "has_timeout": false,
+   "line": 25,
+   "line_hash": "e58003f96db79f25",
+   "method": "POST",
+   "origin": "source",
+   "status": "verified",
+   "url": "https://shipping.internal/api/notify"
+  },
+  {
+   "client": "axios",
+   "enclosing_symbol": "placeOrder",
+   "expression": "PRICING_URL",
+   "extractor": "axios_calls",
+   "file_path": "src/services/orderService.js",
+   "has_timeout": true,
+   "line": 18,
+   "line_hash": "31c1e2ae90f4e6b5",
+   "method": "GET",
+   "origin": "derived",
+   "status": "derived",
+   "url": "https://pricing.internal/api/price"
+  },
+  {
+   "client": "axios",
+   "enclosing_symbol": "verifyToken",
+   "expression": "'https://login.internal/auth/verify'",
+   "extractor": "axios_calls",
+   "file_path": "src/utils/auth.js",
+   "has_timeout": true,
+   "line": 11,
+   "line_hash": "528b0c3c20eb6701",
+   "method": "GET",
+   "origin": "source",
+   "status": "verified",
+   "url": "https://login.internal/auth/verify"
+  }
+ ],
+ "queues": [
+  {
+   "direction": "receive",
+   "enclosing_symbol": "pollShipments",
+   "expression": "'https://sqs.eu-west-1.amazonaws.com/123456789012/order-updates'",
+   "extractor": "sqs",
+   "file_path": "src/services/orderService.js",
+   "library": "aws-sdk",
+   "line": 30,
+   "line_hash": "d61b12276481f467",
+   "origin": "source",
+   "queue_name": "order-updates",
+   "status": "verified"
+  },
+  {
+   "direction": "send",
+   "enclosing_symbol": "notifyShipment",
+   "expression": "'https://sqs.eu-west-1.amazonaws.com/123456789012/shipment-events'",
+   "extractor": "sqs",
+   "file_path": "src/services/orderService.js",
+   "library": "aws-sdk",
+   "line": 26,
+   "line_hash": "21f142ac5896beaf",
+   "origin": "source",
+   "queue_name": "shipment-events",
+   "status": "verified"
+  }
+ ],
+ "routes": [
+  {
+   "expression": "'/'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/controllers/orderController.js",
+   "handler_line": 14,
+   "handler_symbol": "createOrder",
+   "line_hash": "c883bc3d9f797980",
+   "method": "POST",
+   "middleware": [
+    "requireAuth"
+   ],
+   "origin": "source",
+   "path": "/api/orders",
+   "route_file": "src/routes/orders.js",
+   "route_line": 7,
+   "status": "verified"
+  },
+  {
+   "expression": "'/'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/routes/health.js",
+   "handler_line": 4,
+   "handler_symbol": "<inline>",
+   "line_hash": "5587540e82946d18",
+   "method": "GET",
+   "middleware": [],
+   "origin": "source",
+   "path": "/health",
+   "route_file": "src/routes/health.js",
+   "route_line": 4,
+   "status": "verified"
+  },
+  {
+   "expression": "'/:id'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/controllers/orderController.js",
+   "handler_line": 4,
+   "handler_symbol": "getOrder",
+   "line_hash": "b757bdbd8e50e6d7",
+   "method": "GET",
+   "middleware": [
+    "requireAuth"
+   ],
+   "origin": "source",
+   "path": "/api/orders/:id",
+   "route_file": "src/routes/orders.js",
+   "route_line": 6,
+   "status": "verified"
+  },
+  {
+   "expression": "'/:id/ship'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/controllers/orderController.js",
+   "handler_line": 19,
+   "handler_symbol": "shipOrder",
+   "line_hash": "7b6b7a69ce155c3b",
+   "method": "POST",
+   "middleware": [],
+   "origin": "source",
+   "path": "/api/orders/:id/ship",
+   "route_file": "src/routes/orders.js",
+   "route_line": 8,
+   "status": "verified"
+  }
+ ],
+ "symbol_refs": [
+  {
+   "dst_file": "src/controllers/orderController.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "bfb01498b07fa609",
+   "origin": "source",
+   "src_file": "src/routes/orders.js",
+   "src_line": 3,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/repositories/orderRepo.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "c7981c5ef6b2d746",
+   "origin": "source",
+   "src_file": "src/services/orderService.js",
+   "src_line": 3,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/repositories/orderRepo.js",
+   "dst_symbol": "getById",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "85a318c22c08db71",
+   "origin": "source",
+   "src_file": "src/services/orderService.js",
+   "src_line": 10,
+   "src_symbol": "findOrder",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/repositories/orderRepo.js",
+   "dst_symbol": "insertOrder",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "60a9332b3d96d56a",
+   "origin": "source",
+   "src_file": "src/services/orderService.js",
+   "src_line": 19,
+   "src_symbol": "placeOrder",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/routes/health.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "84ac1e3cff3b598c",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 7,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/routes/orders.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "8bcdd328ca2a2114",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 6,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/services/orderService.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "12d21813523036a1",
+   "origin": "source",
+   "src_file": "tests/orderService.test.js",
+   "src_line": 1,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/services/orderService.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "327894002645770a",
+   "origin": "source",
+   "src_file": "src/controllers/orderController.js",
+   "src_line": 1,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/services/orderService.js",
+   "dst_symbol": "findOrder",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "7f39de816e7c4d82",
+   "origin": "source",
+   "src_file": "src/controllers/orderController.js",
+   "src_line": 6,
+   "src_symbol": "getOrder",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/services/orderService.js",
+   "dst_symbol": "notifyShipment",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "31834f07fafc5733",
+   "origin": "source",
+   "src_file": "src/controllers/orderController.js",
+   "src_line": 21,
+   "src_symbol": "shipOrder",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/services/orderService.js",
+   "dst_symbol": "placeOrder",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "3087fc715522fee5",
+   "origin": "source",
+   "src_file": "src/controllers/orderController.js",
+   "src_line": 15,
+   "src_symbol": "createOrder",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/auth.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "766f6fc8f7fe92ae",
+   "origin": "source",
+   "src_file": "src/routes/orders.js",
+   "src_line": 4,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "18631980fc37f28b",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 5,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "55a215e01dff1aa0",
+   "origin": "source",
+   "src_file": "src/controllers/orderController.js",
+   "src_line": 2,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "55a215e01dff1aa0",
+   "origin": "source",
+   "src_file": "src/services/orderService.js",
+   "src_line": 4,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "error",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "cef87886f3d00509",
+   "origin": "source",
+   "src_file": "src/controllers/orderController.js",
+   "src_line": 9,
+   "src_symbol": "getOrder",
+   "status": "unverified"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "error",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "eedb61dcc85de82a",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 15,
+   "src_symbol": "<module>",
+   "status": "unverified"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "info",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "1772588ce940e4d2",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 19,
+   "src_symbol": "<module>",
+   "status": "unverified"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "info",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "d4cffe81fe8404b1",
+   "origin": "source",
+   "src_file": "src/services/orderService.js",
+   "src_line": 20,
+   "src_symbol": "placeOrder",
+   "status": "unverified"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "warn",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "208dd16e22e4e898",
+   "origin": "source",
+   "src_file": "src/controllers/orderController.js",
+   "src_line": 24,
+   "src_symbol": "shipOrder",
+   "status": "unverified"
+  }
+ ],
+ "symbols": [
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/controllers/orderController.js",
+   "kind": "function",
+   "line_end": 12,
+   "line_hash": "7d4627c4321d11cd",
+   "line_start": 4,
+   "name": "getOrder",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/controllers/orderController.js",
+   "kind": "function",
+   "line_end": 17,
+   "line_hash": "ca033e5ede0da638",
+   "line_start": 14,
+   "name": "createOrder",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/controllers/orderController.js",
+   "kind": "function",
+   "line_end": 26,
+   "line_hash": "d08fec4771ac2bc4",
+   "line_start": 19,
+   "name": "shipOrder",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/repositories/orderRepo.js",
+   "kind": "function",
+   "line_end": 14,
+   "line_hash": "481e7b9fc1759331",
+   "line_start": 9,
+   "name": "insertOrder",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/repositories/orderRepo.js",
+   "kind": "function",
+   "line_end": 19,
+   "line_hash": "c3f8b639e9e14a7c",
+   "line_start": 16,
+   "name": "search",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/repositories/orderRepo.js",
+   "kind": "function",
+   "line_end": 7,
+   "line_hash": "c0c0ed96e38a2ee2",
+   "line_start": 3,
+   "name": "getById",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/orderService.js",
+   "kind": "function",
+   "line_end": 15,
+   "line_hash": "d8a62fa6ae5ed932",
+   "line_start": 9,
+   "name": "findOrder",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/orderService.js",
+   "kind": "function",
+   "line_end": 22,
+   "line_hash": "f639df4b0fdb39fe",
+   "line_start": 17,
+   "name": "placeOrder",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/orderService.js",
+   "kind": "function",
+   "line_end": 27,
+   "line_hash": "05669b264a76f080",
+   "line_start": 24,
+   "name": "notifyShipment",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/orderService.js",
+   "kind": "function",
+   "line_end": 31,
+   "line_hash": "9fecc4e493ece816",
+   "line_start": 29,
+   "name": "pollShipments",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/utils/auth.js",
+   "kind": "function",
+   "line_end": 12,
+   "line_hash": "b3551bb874da909d",
+   "line_start": 10,
+   "name": "verifyToken",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/utils/auth.js",
+   "kind": "function",
+   "line_end": 8,
+   "line_hash": "5c1e27ab2508991c",
+   "line_start": 3,
+   "name": "requireAuth",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/utils/format.js",
+   "kind": "function",
+   "line_end": 3,
+   "line_hash": "ca8b8eecc1278898",
+   "line_start": 1,
+   "name": "formatMoney",
+   "origin": "source",
+   "parent": null
+  }
+ ],
+ "test_map": [
+  {
+   "extractor": "tests_map",
+   "how": "import",
+   "origin": "derived",
+   "source_file": "src/services/orderService.js",
+   "test_file": "tests/orderService.test.js"
+  }
+ ]
+}

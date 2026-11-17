@@ -1,0 +1,19 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:16
+        env: { POSTGRES_USER: kb_owner, POSTGRES_PASSWORD: kb_owner_dev, POSTGRES_DB: kb }
+        ports: ["54329:5432"]
+        options: >-
+          --health-cmd "pg_isready -U kb_owner" --health-interval 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e ".[dev]"
+      - run: kbingest golden-check      # extractor golden fixtures on every change
+      - run: pytest -q

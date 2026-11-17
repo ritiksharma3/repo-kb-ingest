@@ -1,0 +1,10 @@
+## {{ s.title }}
+_status: {{ s.status }} · origin: {{ s.origin }}_
+{% if s.status == 'not_found' %}
+Not found. Searched: {{ s.not_found.searched | join('; ') }}
+{% else %}
+{% for it in s['items'] %}
+- **{{ it.fields.get('kind', '-') }}** [{{ it.origin }}]{% for k, v in it.fields.items() if k != 'kind' %} {{ k }}={{ v | j }}{% endfor %}
+  evidence: {{ it.evidence | join(', ') }}
+{% endfor %}
+{% endif %}

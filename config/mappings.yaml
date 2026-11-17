@@ -1,0 +1,13 @@
+# Checked-in mapping file: suite per repo, branch -> environment, internal host -> repo.
+suites:
+  orders-api: "Order Management"
+  login-api: "Identity"
+  mock-api: "Gateway"
+branch_environment:
+  main: production
+  develop: development
+# Hostnames that identify another ingested repo (used by the cross-repo linker).
+hosts:
+  login.internal: login-api
+  orders.internal: orders-api
+  mock.internal: mock-api

@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: kb_owner
+      POSTGRES_PASSWORD: kb_owner_dev
+      POSTGRES_DB: kb
+    ports: ["54329:5432"]
+    volumes: ["kbdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kb_owner -d kb"]
+      interval: 3s
+      retries: 20
+volumes:
+  kbdata:

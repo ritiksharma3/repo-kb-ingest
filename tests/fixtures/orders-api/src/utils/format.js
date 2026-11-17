@@ -1,0 +1,4 @@
+function formatMoney(n) {
+  return `$${n.toFixed(2)}`;
+}
+module.exports = { formatMoney };

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["key", "title", "status", "origin", "items", "evidence", "not_found", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "key": {"type": "string"}, "title": {"type": "string"},
+    "status": {"enum": ["present", "not_found"]},
+    "origin": {"enum": ["source", "derived", "document", "mixed", "none"]},
+    "summary": {"type": "object"},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "not_found": {"anyOf": [{"type": "null"}, {"type": "object", "required": ["searched"],
+                  "properties": {"searched": {"type": "array", "items": {"type": "string"}, "minItems": 1}}}]},
+    "items": {"type": "array", "items": {
+      "type": "object", "required": ["fields", "evidence", "origin"], "additionalProperties": false,
+      "properties": {"fields": {"type": "object", "required": ["kind"]},
+                     "evidence": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+                     "origin": {"enum": ["source", "derived", "document"]}}}}
+  }
+}

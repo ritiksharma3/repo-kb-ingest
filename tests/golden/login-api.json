@@ -1,0 +1,400 @@
+{
+ "convention_stats": [
+  {
+   "counts": {
+    "camelCase": 1,
+    "lowercase": 3
+   },
+   "extractor": "conventions",
+   "majority": "lowercase",
+   "origin": "derived",
+   "outliers": [
+    {
+     "file": "src/services/authService.js",
+     "label": "camelCase",
+     "line": 1
+    }
+   ],
+   "pattern": "file_naming",
+   "representative_file": "src/app.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "logger": 2
+   },
+   "extractor": "conventions",
+   "majority": "logger",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "logger",
+   "representative_file": "src/app.js",
+   "representative_line": 13
+  },
+  {
+   "counts": {
+    "none": 1
+   },
+   "extractor": "conventions",
+   "majority": "none",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "error_handling",
+   "representative_file": "src/services/authService.js",
+   "representative_line": 4
+  },
+  {
+   "counts": {
+    "raw-sql(mssql)": 1
+   },
+   "extractor": "conventions",
+   "majority": "raw-sql(mssql)",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "data_access",
+   "representative_file": "src/services/authService.js",
+   "representative_line": 1
+  },
+  {
+   "counts": {
+    "res.json": 1,
+    "res.json+res.send": 1
+   },
+   "extractor": "conventions",
+   "majority": "res.json",
+   "origin": "derived",
+   "outliers": [
+    {
+     "file": "src/services/authService.js",
+     "label": "res.json+res.send",
+     "line": 14
+    }
+   ],
+   "pattern": "response_shape",
+   "representative_file": "src/app.js",
+   "representative_line": 9
+  },
+  {
+   "counts": {
+    "routes": 1,
+    "services": 1,
+    "utils": 1
+   },
+   "extractor": "conventions",
+   "majority": "layered: routes, services, utils",
+   "origin": "derived",
+   "outliers": [],
+   "pattern": "folder_layout",
+   "representative_file": "src/routes/auth.js",
+   "representative_line": 1
+  }
+ ],
+ "db_access": [
+  {
+   "enclosing_symbol": "findUser",
+   "expression": "'SELECT u.id, u.name, u.hash FROM dbo.Users u WHERE u.name = @n'",
+   "extractor": "mssql_db",
+   "file_path": "src/services/authService.js",
+   "library": "mssql",
+   "line": 6,
+   "line_hash": "bec92af547a14279",
+   "operation": "select",
+   "origin": "source",
+   "procedure": "",
+   "schema_name": "dbo",
+   "status": "verified",
+   "table_name": "Users"
+  }
+ ],
+ "extraction_reports": [],
+ "file_states": {
+  "Jenkinsfile": [
+   "config",
+   "summarized",
+   null
+  ],
+  "README.md": [
+   "docs",
+   "summarized",
+   null
+  ],
+  "ecosystem.config.js": [
+   "config",
+   "summarized",
+   null
+  ],
+  "package.json": [
+   "config",
+   "summarized",
+   null
+  ],
+  "src/app.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/routes/auth.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/services/authService.js": [
+   "source",
+   "summarized",
+   null
+  ],
+  "src/utils/logger.js": [
+   "source",
+   "summarized",
+   null
+  ]
+ },
+ "findings": [],
+ "frameworks": {
+  "express": [
+   "package.json:1 dependency express",
+   "src/app.js:4 imports express",
+   "src/routes/auth.js:1 imports express"
+  ],
+  "mssql": [
+   "package.json:1 dependency mssql",
+   "src/services/authService.js:1 imports mssql"
+  ]
+ },
+ "log_sites": [
+  {
+   "enclosing_symbol": "login",
+   "extractor": "logs",
+   "file_path": "src/services/authService.js",
+   "kind": "log",
+   "level": "info",
+   "line": 16,
+   "line_hash": "2ea20cbb46f55c10",
+   "origin": "source",
+   "template": "User {} logged in"
+  },
+  {
+   "enclosing_symbol": "login",
+   "extractor": "logs",
+   "file_path": "src/services/authService.js",
+   "kind": "log",
+   "level": "warn",
+   "line": 13,
+   "line_hash": "26f89d709e5c1dd0",
+   "origin": "source",
+   "template": "Login failed for {}"
+  },
+  {
+   "enclosing_symbol": null,
+   "extractor": "logs",
+   "file_path": "src/app.js",
+   "kind": "log",
+   "level": "info",
+   "line": 13,
+   "line_hash": "5c15bc2af9edadfb",
+   "origin": "source",
+   "template": "login-api listening on port 4000"
+  }
+ ],
+ "outbound_calls": [],
+ "queues": [],
+ "routes": [
+  {
+   "expression": "'/login'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/services/authService.js",
+   "handler_line": 10,
+   "handler_symbol": "login",
+   "line_hash": "a0c030599ce1e8d0",
+   "method": "POST",
+   "middleware": [],
+   "origin": "source",
+   "path": "/auth/login",
+   "route_file": "src/routes/auth.js",
+   "route_line": 5,
+   "status": "verified"
+  },
+  {
+   "expression": "'/refresh'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/services/authService.js",
+   "handler_line": 20,
+   "handler_symbol": "refresh",
+   "line_hash": "cfc09cc8b898d026",
+   "method": "POST",
+   "middleware": [],
+   "origin": "source",
+   "path": "/auth/refresh",
+   "route_file": "src/routes/auth.js",
+   "route_line": 6,
+   "status": "verified"
+  },
+  {
+   "expression": "'/verify'",
+   "extractor": "express_routes",
+   "framework": "express",
+   "handler_file": "src/services/authService.js",
+   "handler_line": 24,
+   "handler_symbol": "verify",
+   "line_hash": "d04f5d236412be6f",
+   "method": "GET",
+   "middleware": [],
+   "origin": "source",
+   "path": "/auth/verify",
+   "route_file": "src/routes/auth.js",
+   "route_line": 7,
+   "status": "verified"
+  }
+ ],
+ "symbol_refs": [
+  {
+   "dst_file": "src/routes/auth.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "ac915c9296835cca",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 6,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/services/authService.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "692fdbcfc94c300e",
+   "origin": "source",
+   "src_file": "src/routes/auth.js",
+   "src_line": 3,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/services/authService.js",
+   "dst_symbol": "findUser",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "02c4fa3df914106a",
+   "origin": "source",
+   "src_file": "src/services/authService.js",
+   "src_line": 11,
+   "src_symbol": "login",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "18631980fc37f28b",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 5,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "*",
+   "extractor": "symbols_imports",
+   "kind": "import",
+   "line_hash": "55a215e01dff1aa0",
+   "origin": "source",
+   "src_file": "src/services/authService.js",
+   "src_line": 2,
+   "src_symbol": "<module>",
+   "status": "resolved"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "info",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "2ea20cbb46f55c10",
+   "origin": "source",
+   "src_file": "src/services/authService.js",
+   "src_line": 16,
+   "src_symbol": "login",
+   "status": "unverified"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "info",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "5c15bc2af9edadfb",
+   "origin": "source",
+   "src_file": "src/app.js",
+   "src_line": 13,
+   "src_symbol": "<module>",
+   "status": "unverified"
+  },
+  {
+   "dst_file": "src/utils/logger.js",
+   "dst_symbol": "warn",
+   "extractor": "symbols_imports",
+   "kind": "call",
+   "line_hash": "26f89d709e5c1dd0",
+   "origin": "source",
+   "src_file": "src/services/authService.js",
+   "src_line": 13,
+   "src_symbol": "login",
+   "status": "unverified"
+  }
+ ],
+ "symbols": [
+  {
+   "exported": false,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/authService.js",
+   "kind": "function",
+   "line_end": 8,
+   "line_hash": "3d351fd66ed07762",
+   "line_start": 4,
+   "name": "findUser",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/authService.js",
+   "kind": "function",
+   "line_end": 18,
+   "line_hash": "0a473f3428bd2e4f",
+   "line_start": 10,
+   "name": "login",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/authService.js",
+   "kind": "function",
+   "line_end": 22,
+   "line_hash": "08b302f0b5e3c07e",
+   "line_start": 20,
+   "name": "refresh",
+   "origin": "source",
+   "parent": null
+  },
+  {
+   "exported": true,
+   "extractor": "symbols_imports",
+   "file_path": "src/services/authService.js",
+   "kind": "function",
+   "line_end": 29,
+   "line_hash": "23d52d9dd2845a60",
+   "line_start": 24,
+   "name": "verify",
+   "origin": "source",
+   "parent": null
+  }
+ ],
+ "test_map": []
+}
